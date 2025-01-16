@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'rel='stylesheet'> 
+    <title>Tela de Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="container">
+        <form onsubmit="validateForm(event)">
+            <h1>Login</h1>
+            <div class="inputbox">
+                <input id="email" placeholder="Nome de usuário" type="email" required oninvalid="this.setCustomValidity('Por favor, preencha o nome de usuário.')" oninput="setCustomValidity('')">
+                <i class="bx bxs-user"></i>
+            </div>
+            <div class="inputbox">
+                <input id="password" placeholder="Senha" type="password" minlength="6" required oninvalid="this.setCustomValidity('Por favor, preencha a senha.')" oninput="setCustomValidity('')">
+                <i class="bx bxs-lock-alt"></i>
+            </div>
+            <button type="submit" class="loginbutton">Entrar</button>
+            <div id="message" style="margin-top: 10px;"></div>
+        </form>
+    </main>
+    
+    <script>
+        document.getElementById('email').addEventListener('input', function() {
+            if (this.validity.typeMismatch) {
+                this.setCustomValidity('Por favor, insira um endereço de e-mail válido.');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        document.getElementById('password').addEventListener('input', function() {
+            if (this.validity.tooShort) {
+                this.setCustomValidity('A senha deve ter pelo menos 6 caracteres.');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        function validateForm(event) {
+            event.preventDefault(); // Previnir o envio do formulário
+            const email = document.querySelector('input[type="email"]');
+            const password = document.querySelector('input[type="password"]');
+            const message = document.getElementById('message');
+            
+            if (email.validity.valid && password.value.length >= 6) {
+                message.textContent = 'Login bem-sucedido!';
+                message.style.color = 'green';
+            } else {
+                message.textContent = 'Erro: Verifique os dados inseridos.';
+                message.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>

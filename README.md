@@ -27,7 +27,7 @@ cd tela_de_login
 - HTML
 - CSS
 
-##Funcionalidades
+## Funcionalidades
 
 - Validação de e-mail
 - Validação de senha
